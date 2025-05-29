@@ -1,124 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Devin's Webpage</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>My Game Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-  <div id="page">
-    <!-- Navigation -->
-    <div id="navigation">
-      <div id="navLinks">
-        <li>
-          <a href="#home">Home</a>
-          <a href="#aboutSect">About Me</a>
-          <a href="#projects">Projects</a>
-          <a href="#footSect">Contact</a>
-        </li>
-      </div>
-    </div>
 
-    <!-- Intro -->
-    <header id="home">
-      <h3>Hi! I'm Devin</h3><br />
-      <h2>Welcome to my Webpage</h2>
-    </header>
+  <header>
+    <h1>My Game Portfolio</h1>
+    <nav>
+      <a href="#cookieClicker">Cookie Clicker</a>
+      <a href="#pong">Pong</a>
+      <a href="#hangman">Hangman</a>
+    </nav>
+  </header>
 
-    <!-- About -->
-    <main id="aboutSect">
-      <h1>About Me</h1>
-      <div id="writing">
-        <p>
-           I'm a Junior at Mt. Eden High School. 
-          <br />
-           This year, was my first year getting into programming. With my AP Computer Science teacher, I was able to start working  with C++ and Java Script. Even though, I struggled at first, I soon came to realize that I was actually pretty good at it and I understood it well. I really enjoyed learning in this class and I felt like at times it just clicked for me. I appreciate all I've learned this year.
-      </p>
-        </p>
-      </div>
-    </main>
+  <main>
+    <section id="cookieClicker" class="game-section">
+      <h2>Cookie Clicker</h2>
+      <button id="cookieBtn">🍪 Click Me!</button>
+      <p>Cookies: <span id="cookieCount">0</span></p>
+    </section>
 
-    <!-- Projects Section -->
-    <projects id="projects">
-      <h3 id="projectSect">My Projects</h3>
+    <section id="pong" class="game-section">
+      <h2>Pong</h2>
+      <canvas id="pongCanvas" width="600" height="400"></canvas>
+      <p>Use W/S for left paddle, Up/Down arrows for right paddle</p>
+    </section>
 
-      <!-- Cookie Clicker Description -->
-      <div id="text1" class="desc">
-        <h2>Cookie Clicker</h2>
-        <h4>
-          A simple incremental game where you click a cookie to earn cookies. You can purchase upgrades that increase
-          your cookies per click or earn cookies automatically. A fun introduction to game loops and UI updates!
-        </h4>
-      </div>
-
-      <!-- Cookie Clicker UI -->
-      <div id="CookieClickerPro" class="projects">
-        <div id="cookieClickerContainer">
-          <h2>Cookie Clicker</h2>
-          <button id="cookieButton">🍪 Click me!</button>
-          <p>Cookies: <span id="cookieCount">0</span></p>
-          <button id="upgradeClicker">Upgrade Click (+1 cookie per click) - Cost: <span id="clickUpgradeCost">10</span></button>
-          <button id="autoClicker">Auto Clicker (+1 cookie per second) - Cost: <span id="autoClickerCost">50</span></button>
-        </div>
-      </div>
-
-      <!-- Hangman Description -->
-      <div id="text2" class="desc">
-        <h2>Hangman</h2>
-        <h4>
-          A classic word guessing game where you try to guess the hidden word letter by letter before the man is hanged.
-          Includes basic keyboard input and display of guessed letters and remaining tries.
-        </h4>
-      </div>
-
-      <!-- Hangman UI -->
-      <div id="HangmanPro" class="projects">
-        <div id="hangmanContainer">
-          <h2>Hangman</h2>
-          <p id="wordDisplay">_ _ _ _ _</p>
-          <p>Wrong guesses: <span id="wrongLetters"></span></p>
-          <p>Remaining tries: <span id="remainingTries">6</span></p>
-          <input type="text" id="letterInput" maxlength="1" placeholder="Enter a letter" />
-          <button id="guessButton">Guess</button>
-          <button id="resetHangman">Restart Game</button>
-          <p id="hangmanMessage"></p>
-        </div>
-      </div>
-
-      <!-- Pong Description -->
-      <div id="text3" class="desc">
-        <h2>Pong</h2>
-        <h4>
-          A simple Pong game where you control a paddle to hit a moving ball back and forth. Use keyboard controls to move
-          your paddle and try to score against the AI opponent.
-        </h4>
-      </div>
-
-      <!-- Pong UI -->
-      <div id="PongPro" class="projects">
-        <div id="pongContainer">
-          <h2>Pong</h2>
-          <canvas id="pongCanvas" width="600" height="400" style="border:1px solid #000;"></canvas>
-          <p>Player Score: <span id="playerScore">0</span> | AI Score: <span id="aiScore">0</span></p>
-          <button id="startPong">Start Game</button>
-          <button id="resetPong">Reset Game</button>
-        </div>
-      </div>
-    </projects>
-
-    <!-- Footer -->
-    <footer id="footSect">
-      <h1>Socials</h1> <br />
-      <a><i class="fa-solid fa-envelope fa-xl" style="color:var(--white)"></i></a>
-      <a><i class="fa-brands fa-github fa-xl" style="color:var(--white)"></i></a>
-      <a><i class="fa-brands fa-codepen fa-xl" style="color:var(--white)"></i></a>
-    </footer>
-  </div>
+    <section id="hangman" class="game-section">
+      <h2>Hangman</h2>
+      <p id="wordDisplay">_ _ _ _ _</p>
+      <input type="text" id="letterInput" maxlength="1" />
+      <button id="guessBtn">Guess</button>
+      <p>Wrong guesses: <span id="wrongGuesses"></span></p>
+      <p>Attempts left: <span id="attemptsLeft">6</span></p>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
-
 </html>
