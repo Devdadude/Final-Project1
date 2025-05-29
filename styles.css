@@ -1,288 +1,120 @@
-/*========================= Colors =========================*/
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Limelight&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poller+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap");
+
+/* Colors */
 :root {
-  --black: #121212;
-  --darkRed: #b71c1c;
-  --red: #e53935;
-  --lightRed: #ef5350;
-  --white: #f5f5f5;
-  --gray: #2e2e2e;
-  --darkGray: #1c1c1c;
+  --black: #1a1a1a;
+  --red: #d72631;
+  --darkRed: #a71d2a;
+  --white: #f0f0f0;
+  --gray: #333;
 }
 
-/*========================= Fonts =========================*/
-h3 {
-  font-family: Limelight;
-  font-size: 4rem;
-  margin: 4px;
-  color: var(--red);
-}
-h1 {
-  font-family: "Poller One", serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 2.5rem;
-  margin: 4px;
-  color: var(--white);
-}
-h2 {
-  font-family: "Poiret One", sans-serif;
-  font-size: 2.5rem;
-  font-weight: 400;
-  font-style: normal;
-  margin: 4px;
-  color: var(--red);
-}
-p {
-  font-family: "Poiret One", sans-serif;
-  font-size: 1.8rem;
-  font-weight: 400;
-  font-style: normal;
-  margin: 4px;
-  color: var(--white);
-}
-h4 {
-  font-family: "Cutive Mono", monospace;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 1.8rem;
-  color: var(--lightRed);
-}
-a {
-  font-family: "Poiret One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  text-decoration: none;
-  margin-left: 10px;
-  margin-right: 10px;
-  color: var(--white);
-}
-a:hover {
-  text-decoration: underline;
-  color: var(--red);
-}
-li {
-  list-style: none;
-  text-align: center;
-  margin-top: 40px;
-  color: var(--white);
-}
-
-/*========================= Body =========================*/
+/* Body */
 body {
-  margin: 4px;
   background-color: var(--black);
+  color: var(--white);
+  font-family: "Poiret One", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/*========================= Nav Bar =========================*/
-#navigation {
-  position: fixed;
-  width: 100%;
-  max-height: 64px;
-  overflow: hidden;
-  left: 0;
-  right: 0;
-  top: 0;
-  background-color: var(--darkGray);
-  line-height: 30px;
-  margin-top: -20px;
-  padding-bottom: 15px;
-  z-index: 10;
-}
-#navigation a {
-  color: var(--red);
-  font-size: 25px;
-  padding-left: 40px;
-  padding-right: 40px;
-  transition: color 0.3s ease;
-}
-#navigation a:hover {
-  color: var(--lightRed);
-}
-
-/*========================================================================= Style for overall layout & colors =========================================================================*/
-#page {
-  max-width: 100%;
-  height: 100%;
-  padding: 2rem;
-  background-color: var(--black);
-}
-
-/*========================= Front page =========================*/
-#page > header {
-  height: 90vh;
-  margin-top: 30px;
+/* Header */
+header {
   background-color: var(--darkRed);
-  background-image: repeating-radial-gradient(circle at center, var(--red), var(--darkRed) 40%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 4rem;
-  color: var(--white);
+  padding: 1rem;
+  text-align: center;
 }
 
-/*========================= About Sect =========================*/
-#page > main {
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-image: linear-gradient(var(--darkGray), var(--black));
-  padding: 4rem;
-  padding-top: 100px;
-  padding-bottom: 50px;
-}
-main h1 {
-  color: var(--red);
-}
-#writing {
-  margin: 0px 3rem;
-  text-align: center;
-  padding: 4rem 5rem;
-  background: var(--gray);
-  border-radius: 15%;
-  border: 1px solid var(--red);
-  color: var(--white);
-}
-
-/*========================= Projects =========================*/
-#page > #projects {
-  height: auto;
-  width: auto;
-  background-color: var(--darkGray);
-  padding: 4rem;
-  border-radius: 15px;
-}
-#projects {
-  display: grid;
-  width: 100%;
-  height: 100%;
-  grid-template-areas:
-    "title title"
-    "cookie text1"
-    "hangman text2"
-    "pong text3";
-  grid-template-rows: repeat(4, auto);
-  grid-template-columns: 50vw 1fr;
-  row-gap: 50px;
-  column-gap: 50px;
-}
-#projects h3 {
-  margin-top: 5rem;
-  grid-area: title;
-  text-align: center;
-  color: var(--red);
+header h1 {
+  font-family: "Limelight", cursive;
   font-size: 3rem;
-}
-#projects h2 {
-  color: var(--red);
-}
-#projects h4 {
-  color: var(--lightRed);
-}
-#CookieClickerPro {
-  grid-area: cookie;
-  background-color: var(--gray);
-  padding: 20px;
-  border-radius: 15px;
-  color: var(--white);
-}
-#HangmanPro {
-  grid-area: hangman;
-  background-color: var(--gray);
-  padding: 20px;
-  border-radius: 15px;
-  color: var(--white);
-}
-#PongPro {
-  grid-area: pong;
-  background-color: var(--gray);
-  padding: 20px;
-  border-radius: 15px;
-  color: var(--white);
+  margin: 0;
 }
 
-#text1,
-#text2,
-#text3 {
-  max-height: 100vh;
-  overflow-y: scroll;
-  scrollbar-width: thin;
-  scrollbar-color: var(--red) var(--darkGray);
+nav a {
   color: var(--white);
+  margin: 0 15px;
+  font-size: 1.2rem;
+  text-decoration: none;
 }
 
-.desc h2 {
-  font-weight: bold;
+nav a:hover {
   color: var(--red);
+  text-decoration: underline;
 }
 
-/*========================= Buttons =========================*/
-button {
-  font-family: "Poiret One", sans-serif;
-  font-size: 18px;
-  padding: 10px 20px;
-  margin: 10px 5px;
-  border: 2px solid var(--red);
-  border-radius: 10px;
-  background-color: var(--black);
+/* Main content */
+main {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.game-section {
+  background-color: var(--gray);
+  padding: 2rem;
+  margin-bottom: 3rem;
+  border-radius: 15px;
+  box-shadow: 0 0 10px var(--red);
+}
+
+h2 {
+  font-family: "Poller One", cursive;
+  font-size: 2.5rem;
   color: var(--red);
+  margin-top: 0;
+}
+
+/* Cookie Clicker */
+#cookieBtn {
+  font-size: 3rem;
+  background: var(--red);
+  border: none;
+  border-radius: 15px;
+  color: var(--white);
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-button:hover {
-  background-color: var(--red);
-  color: var(--white);
-  border-color: var(--lightRed);
+  padding: 15px 30px;
+  transition: background 0.3s ease;
 }
 
-/*========================= Inputs =========================*/
-input[type="text"] {
-  font-family: "Poiret One", sans-serif;
-  font-size: 18px;
-  padding: 10px;
-  border-radius: 10px;
-  border: 2px solid var(--red);
-  background-color: var(--darkGray);
-  color: var(--white);
-  width: 150px;
-  margin-right: 10px;
-}
-input[type="text"]::placeholder {
-  color: var(--lightRed);
+#cookieBtn:hover {
+  background: var(--darkRed);
 }
 
-/*========================= Cookie Clicker Specific =========================*/
-#cookieClickerContainer {
-  text-align: center;
-}
-
-/*========================= Hangman Specific =========================*/
-#hangmanContainer {
-  text-align: center;
-}
-
-/*========================= Pong Specific =========================*/
-#pongContainer {
-  text-align: center;
-}
+/* Pong Canvas */
 #pongCanvas {
-  background-color: var(--black);
-  border: 2px solid var(--red);
-  border-radius: 10px;
   display: block;
-  margin: 0 auto 20px auto;
+  margin: 1rem auto;
+  background-color: var(--black);
+  border: 3px solid var(--red);
+  border-radius: 10px;
 }
 
-/*========================= Scrollbar =========================*/
-::-webkit-scrollbar {
-  width: 8px;
+/* Hangman */
+#letterInput {
+  font-size: 1.5rem;
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 8px;
+  border: none;
+  width: 30px;
+  text-align: center;
 }
-::-webkit-scrollbar-track {
-  background: var(--darkGray);
+
+#guessBtn {
+  background: var(--red);
+  border: none;
+  padding: 8px 15px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--white);
 }
-::-webkit-scrollbar-thumb {
-  background-color: var(--red);
-  border-radius: 10px;
-  border: 2px solid var(--darkGray);
+
+#guessBtn:hover {
+  background: var(--darkRed);
 }
