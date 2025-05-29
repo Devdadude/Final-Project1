@@ -1,154 +1,168 @@
-/*--------------------------------- Cookie Clicker ---------------------------------*/
-let cookie = document.getElementById("cookie");
-let counter = document.getElementById("counter");
-let upgradeBtn = document.getElementById("upgrade");
-let autoClickerBtn = document.getElementById("autoClicker");
+// COOKIE CLICKER
+let cookieCount = 0;
+const cookieBtn = document.getElementById("cookieBtn");
+const cookieCountSpan = document.getElementById("cookieCount");
 
-let cookies = 0;
-let clickPower = 1;
-let autoClicking = false;
-let autoClickInterval;
-
-cookie.addEventListener("click", () => {
-	cookies += clickPower;
-	counter.innerText = cookies;
+cookieBtn.addEventListener("click", () => {
+  cookieCount++;
+  cookieCountSpan.textContent = cookieCount;
 });
 
-upgradeBtn.addEventListener("click", () => {
-	if (cookies >= 10) {
-		cookies -= 10;
-		clickPower += 1;
-		counter.innerText = cookies;
-	}
-});
-
-autoClickerBtn.addEventListener("click", () => {
-	if (cookies >= 50 && !autoClicking) {
-		cookies -= 50;
-		autoClicking = true;
-		counter.innerText = cookies;
-		autoClickInterval = setInterval(() => {
-			cookies += clickPower;
-			counter.innerText = cookies;
-		}, 1000);
-	}
-});
-
-/*--------------------------------- Hangman ---------------------------------*/
-const wordList = ["javascript", "hangman", "computer", "programming", "interface"];
-let chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
-let display = Array(chosenWord.length).fill("_");
-let guessedLetters = [];
-let attemptsLeft = 6;
-
-document.getElementById("wordDisplay").innerText = display.join(" ");
-document.getElementById("attempts").innerText = `Attempts left: ${attemptsLeft}`;
-
-function guessLetter() {
-	let input = document.getElementById("letterInput").value.toLowerCase();
-	if (!input || input.length !== 1 || guessedLetters.includes(input)) return;
-
-	guessedLetters.push(input);
-	if (chosenWord.includes(input)) {
-		for (let i = 0; i < chosenWord.length; i++) {
-			if (chosenWord[i] === input) display[i] = input;
-		}
-	} else {
-		attemptsLeft--;
-	}
-
-	document.getElementById("wordDisplay").innerText = display.join(" ");
-	document.getElementById("attempts").innerText = `Attempts left: ${attemptsLeft}`;
-	if (!display.includes("_")) {
-		alert("You win!");
-	} else if (attemptsLeft <= 0) {
-		alert(`Game over! The word was: ${chosenWord}`);
-	}
-}
-
-/*--------------------------------- Pong ---------------------------------*/
+// PONG GAME
 const canvas = document.getElementById("pongCanvas");
 const ctx = canvas.getContext("2d");
 
-const paddleWidth = 10;
-const paddleHeight = 100;
-let playerY = canvas.height / 2 - paddleHeight / 2;
-let aiY = canvas.height / 2 - paddleHeight / 2;
+const paddleWidth = 10, paddleHeight = 100, ballSize = 10;
 
-const ballSize = 10;
-let ballX = canvas.width / 2;
-let ballY = canvas.height / 2;
-let ballSpeedX = 5;
-let ballSpeedY = 3;
+let leftPaddleY = canvas.height / 2 - paddleHeight / 2;
+let rightPaddleY = canvas.height / 2 - paddleHeight / 2;
 
-function drawRect(x, y, w, h, color) {
-	ctx.fillStyle = color;
-	ctx.fillRect(x, y, w, h);
-}
+let ballX = canvas.width / 2 - ballSize / 2;
+let ballY = canvas.height / 2 - ballSize / 2;
 
-function drawCircle(x, y, r, color) {
-	ctx.fillStyle = color;
-	ctx.beginPath();
-	ctx.arc(x, y, r, 0, Math.PI * 2);
-	ctx.closePath();
-	ctx.fill();
-}
+let ballSpeedX = 4;
+let ballSpeedY = 4;
 
-function drawNet() {
-	for (let i = 0; i < canvas.height; i += 15) {
-		drawRect(canvas.width / 2 - 1, i, 2, 10, "white");
-	}
-}
+let leftPaddleSpeed = 0;
+let rightPaddleSpeed = 0;
 
-function render() {
-	drawRect(0, 0, canvas.width, canvas.height, "black");
-	drawNet();
-	drawRect(0, playerY, paddleWidth, paddleHeight, "white");
-	drawRect(canvas.width - paddleWidth, aiY, paddleWidth, paddleHeight, "white");
-	drawCircle(ballX, ballY, ballSize, "white");
-}
+const paddleSpeed = 7;
 
-function update() {
-	ballX += ballSpeedX;
-	ballY += ballSpeedY;
-
-	if (ballY + ballSize > canvas.height || ballY - ballSize < 0) ballSpeedY = -ballSpeedY;
-
-	if (
-		ballX - ballSize < paddleWidth &&
-		ballY > playerY &&
-		ballY < playerY + paddleHeight
-	) {
-		ballSpeedX = -ballSpeedX;
-	}
-
-	if (
-		ballX + ballSize > canvas.width - paddleWidth &&
-		ballY > aiY &&
-		ballY < aiY + paddleHeight
-	) {
-		ballSpeedX = -ballSpeedX;
-	}
-
-	if (ballX < 0 || ballX > canvas.width) {
-		ballX = canvas.width / 2;
-		ballY = canvas.height / 2;
-		ballSpeedX = -ballSpeedX;
-	}
-
-	let aiCenter = aiY + paddleHeight / 2;
-	if (aiCenter < ballY - 35) aiY += 4;
-	else if (aiCenter > ballY + 35) aiY -= 4;
-}
-
-document.addEventListener("mousemove", (e) => {
-	playerY = e.clientY - canvas.getBoundingClientRect().top - paddleHeight / 2;
+// Controls
+const keys = {};
+window.addEventListener("keydown", e => {
+  keys[e.key] = true;
+});
+window.addEventListener("keyup", e => {
+  keys[e.key] = false;
 });
 
+function movePaddles() {
+  // Left paddle (W/S)
+  if (keys["w"] && leftPaddleY > 0) leftPaddleY -= paddleSpeed;
+  if (keys["s"] && leftPaddleY + paddleHeight < canvas.height) leftPaddleY += paddleSpeed;
+
+  // Right paddle (Arrow Up/Down)
+  if (keys["ArrowUp"] && rightPaddleY > 0) rightPaddleY -= paddleSpeed;
+  if (keys["ArrowDown"] && rightPaddleY + paddleHeight < canvas.height) rightPaddleY += paddleSpeed;
+}
+
+function moveBall() {
+  ballX += ballSpeedX;
+  ballY += ballSpeedY;
+
+  // Top and bottom collision
+  if (ballY <= 0 || ballY + ballSize >= canvas.height) ballSpeedY = -ballSpeedY;
+
+  // Left paddle collision
+  if (
+    ballX <= paddleWidth &&
+    ballY + ballSize >= leftPaddleY &&
+    ballY <= leftPaddleY + paddleHeight
+  ) {
+    ballSpeedX = -ballSpeedX;
+  }
+
+  // Right paddle collision
+  if (
+    ballX + ballSize >= canvas.width - paddleWidth &&
+    ballY + ballSize >= rightPaddleY &&
+    ballY <= rightPaddleY + paddleHeight
+  ) {
+    ballSpeedX = -ballSpeedX;
+  }
+
+  // Reset ball if it goes out of bounds
+  if (ballX < 0 || ballX > canvas.width) {
+    ballX = canvas.width / 2 - ballSize / 2;
+    ballY = canvas.height / 2 - ballSize / 2;
+    ballSpeedX = -ballSpeedX;
+  }
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw paddles
+  ctx.fillStyle = "#d72631";
+  ctx.fillRect(0, leftPaddleY, paddleWidth, paddleHeight);
+  ctx.fillRect(canvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight);
+
+  // Draw ball
+  ctx.fillStyle = "#f0f0f0";
+  ctx.fillRect(ballX, ballY, ballSize, ballSize);
+}
+
 function gameLoop() {
-	update();
-	render();
-	requestAnimationFrame(gameLoop);
+  movePaddles();
+  moveBall();
+  draw();
+  requestAnimationFrame(gameLoop);
 }
 
 gameLoop();
+
+// HANGMAN
+const words = ["JAVASCRIPT", "COMPUTER", "PROGRAM", "CODING", "WEBSITE"];
+let chosenWord = "";
+let guessedLetters = [];
+let wrongGuesses = [];
+let maxAttempts = 6;
+
+const wordDisplay = document.getElementById("wordDisplay");
+const letterInput = document.getElementById("letterInput");
+const guessBtn = document.getElementById("guessBtn");
+const wrongGuessesSpan = document.getElementById("wrongGuesses");
+const attemptsLeftSpan = document.getElementById("attemptsLeft");
+
+function initHangman() {
+  chosenWord = words[Math.floor(Math.random() * words.length)];
+  guessedLetters = [];
+  wrongGuesses = [];
+  maxAttempts = 6;
+  updateWordDisplay();
+  wrongGuessesSpan.textContent = "";
+  attemptsLeftSpan.textContent = maxAttempts;
+  letterInput.value = "";
+}
+
+function updateWordDisplay() {
+  let display = "";
+  for (let letter of chosenWord) {
+    display += guessedLetters.includes(letter) ? letter + " " : "_ ";
+  }
+  wordDisplay.textContent = display.trim();
+}
+
+guessBtn.addEventListener("click", () => {
+  const guess = letterInput.value.toUpperCase();
+  if (!guess || guessedLetters.includes(guess) || wrongGuesses.includes(guess)) {
+    letterInput.value = "";
+    return;
+  }
+
+  if (chosenWord.includes(guess)) {
+    guessedLetters.push(guess);
+  } else {
+    wrongGuesses.push(guess);
+    maxAttempts--;
+    attemptsLeftSpan.textContent = maxAttempts;
+    wrongGuessesSpan.textContent = wrongGuesses.join(", ");
+  }
+  letterInput.value = "";
+  updateWordDisplay();
+
+  // Check for win
+  if (chosenWord.split("").every(l => guessedLetters.includes(l))) {
+    alert("You Win! The word was: " + chosenWord);
+    initHangman();
+  }
+
+  // Check for lose
+  if (maxAttempts <= 0) {
+    alert("Game Over! The word was: " + chosenWord);
+    initHangman();
+  }
+});
+
+initHangman();
