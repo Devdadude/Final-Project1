@@ -118,3 +118,49 @@ h2 {
 #guessBtn:hover {
   background: var(--darkRed);
 }
+.about-section {
+  background-color: var(--gray);
+  padding: 2rem;
+  margin-bottom: 3rem;
+  border-radius: 15px;
+  box-shadow: 0 0 10px var(--red);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.1rem;
+}
+
+footer {
+  background-color: var(--darkRed);
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin-top: 3rem;
+}
+
+footer h3 {
+  margin-bottom: 0.75rem;
+  font-family: "Poller One", cursive;
+  font-size: 1.8rem;
+}
+
+footer .socials {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+footer .socials li a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+footer .socials li a:hover {
+  color: var(--red);
+  text-decoration: underline;
+}
