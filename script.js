@@ -1,12 +1,63 @@
 // COOKIE CLICKER
 let cookieCount = 0;
+let autoClickerCount = 0;
+const autoClickerCost = 10;
+
 const cookieBtn = document.getElementById("cookieBtn");
 const cookieCountSpan = document.getElementById("cookieCount");
+const buyAutoClickerBtn = document.getElementById("buyAutoClickerBtn");
+const autoClickerCountSpan = document.getElementById("autoClickerCount");
 
+// Clicking cookie manually
 cookieBtn.addEventListener("click", () => {
   cookieCount++;
-  cookieCountSpan.textContent = cookieCount;
+  updateCookieDisplay();
+  updateAutoClickerButton();
 });
+
+// Buy auto clicker if enough cookies
+buyAutoClickerBtn.addEventListener("click", () => {
+  if (cookieCount >= autoClickerCost) {
+    cookieCount -= autoClickerCost;
+    autoClickerCount++;
+    updateCookieDisplay();
+    updateAutoClickerButton();
+    updateAutoClickerCount();
+  }
+});
+
+function updateCookieDisplay() {
+  cookieCountSpan.textContent = cookieCount;
+}
+
+function updateAutoClickerCount() {
+  autoClickerCountSpan.textContent = autoClickerCount;
+}
+
+function updateAutoClickerButton() {
+  if (cookieCount < autoClickerCost) {
+    buyAutoClickerBtn.disabled = true;
+    buyAutoClickerBtn.style.opacity = 0.5;
+    buyAutoClickerBtn.style.cursor = "not-allowed";
+  } else {
+    buyAutoClickerBtn.disabled = false;
+    buyAutoClickerBtn.style.opacity = 1;
+    buyAutoClickerBtn.style.cursor = "pointer";
+  }
+}
+
+// Auto clicker generates cookies every second
+setInterval(() => {
+  cookieCount += autoClickerCount;
+  updateCookieDisplay();
+  updateAutoClickerButton();
+  updateAutoClickerCount();
+}, 1000);
+
+// Initialize display states on page load
+updateCookieDisplay();
+updateAutoClickerCount();
+updateAutoClickerButton();
 
 // PONG GAME
 const canvas = document.getElementById("pongCanvas");
