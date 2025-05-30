@@ -18,20 +18,28 @@
   </header>
 
   <main>
+    <section id="aboutMe" class="about-section">
+      <h2>About Me</h2>
+      <p>Hello! I'm Devin Santos, a junior at Mt. Eden High School. This year I learned coding with C++ and JavaScript. It was challenging at first, but I persevered and enjoyed building these projects. This portfolio showcases some of my favorite games I've developed.</p>
+    </section>
+
     <section id="cookieClicker" class="game-section">
       <h2>Cookie Clicker</h2>
+      <p>Click the cookie to earn cookies! Buy cursors to automatically generate cookies every second.</p>
       <button id="cookieBtn">🍪 Click Me!</button>
       <p>Cookies: <span id="cookieCount">0</span></p>
     </section>
 
     <section id="pong" class="game-section">
       <h2>Pong</h2>
+      <p>Classic 2-player Pong game. Use W/S for the left paddle, and Up/Down arrows for the right paddle to hit the ball.</p>
       <canvas id="pongCanvas" width="600" height="400"></canvas>
       <p>Use W/S for left paddle, Up/Down arrows for right paddle</p>
     </section>
 
     <section id="hangman" class="game-section">
       <h2>Hangman</h2>
+      <p>Guess the hidden word one letter at a time. Choose wisely and avoid getting hanged!</p>
       <p id="wordDisplay">_ _ _ _ _</p>
       <input type="text" id="letterInput" maxlength="1" />
       <button id="guessBtn">Guess</button>
@@ -39,6 +47,14 @@
       <p>Attempts left: <span id="attemptsLeft">6</span></p>
     </section>
   </main>
+
+  <footer>
+    <h3>Connect with me</h3>
+    <ul class="socials">
+      <li><a href="https://www.snapchat.com/add/devsantos22" target="_blank" rel="noopener noreferrer">Snapchat</a></li>
+      <li><a href="https://www.instagram.com/devdadude22" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+    </ul>
+  </footer>
 
   <script src="script.js"></script>
 </body>
