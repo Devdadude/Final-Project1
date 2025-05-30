@@ -164,3 +164,19 @@ footer .socials li a:hover {
   color: var(--red);
   text-decoration: underline;
 }
+
+#buyAutoClickerBtn {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  background: var(--red);
+  border: none;
+  border-radius: 15px;
+  color: var(--white);
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: background 0.3s ease;
+}
+
+#buyAutoClickerBtn:hover:not(:disabled) {
+  background: var(--darkRed);
+}
